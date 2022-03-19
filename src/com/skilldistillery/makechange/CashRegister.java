@@ -12,14 +12,7 @@ public class CashRegister {
 
 		double price = sc.nextDouble();
 		System.out.println("Price: $" + price);
-		/*
-		 * User Story #1 The user is prompted asking for the price of the item.
-		 */
 
-		/*
-		 * User Story #2 The user is then prompted asking how much money was tendered by
-		 * the customer.
-		 */
 		System.out.println("How much money was tendered by the customer?");
 		double amtTendered = sc.nextDouble();
 
@@ -34,94 +27,85 @@ public class CashRegister {
 		if (amtTendered == price) {
 			System.out.println("Customer provided exact amount.");
 		}
-		/*
-		 * User Story #3 Display an appropriate message if the customer provided too
-		 * little money or the exact amount.
-		 */
+
+		// make change
 		if (amtTendered > price) {
+			System.out.println("Total change due: $" + changeTot);
+			System.out.println();
+			System.out.println("Give the customer the following change: ");
+			System.out.println();
 
-			System.out.println("Give customer the following change: ");
-			System.out.println("Total change: " + changeTot);
-			// how many $20s
+			// twenties
+			double twenties = changeTot / 20;
+			twenties = (int) twenties;
 
-			if (changeTot > 19.99) {
+			System.out.println("Twenty-dollar bill(s): " + twenties);
 
-				double giveTwenty = (changeTot / 20);
-				System.out.println("Number of 20s before adjustment: " + giveTwenty);
+			double newChangeAfterTwenties = changeTot - (twenties * 20);
+			System.out.println();
 
-				giveTwenty = (int) giveTwenty;
-				System.out.println("Twenty dollar bills: " + giveTwenty);
-			}
+			// tens
+			double tens = newChangeAfterTwenties / 10;
+			tens = (int) tens;
 
-			if (changeTot < 20 && changeTot > 9.99) {
+			System.out.println("Ten-dollar bill(s): " + tens);
 
-				double giveTen = (changeTot / 10);
-				System.out.println("Number of 10s before adjustment: " + giveTen);
+			double newChangeAfterTens = newChangeAfterTwenties - (tens * 10);
+			System.out.println();
 
-				giveTen = (int) giveTen;
-				System.out.println("Ten dollar bills: " + giveTen);
+			// fives
+			double fives = newChangeAfterTens / 5;
+			fives = (int) fives;
 
-			}
+			System.out.println("Five-dollar bill(s): " + fives);
 
-			if (changeTot < 10 && changeTot > 0.99) {
+			double newChangeAfterFives = newChangeAfterTens - (fives * 5);
+			System.out.println();
 
-				double giveOne = (int) changeTot;
-				System.out.println("One dollar bills: " + giveOne);
-			}
+			// ones
+			double ones = newChangeAfterFives;
+			ones = (int) ones;
 
-			if (changeTot < 1.00) {
-				double changeAdj = changeTot * 100;
+			System.out.println("One-dollar bill(s): " + ones);
 
-				// give quarters
+			double newChangeAfterOnes = newChangeAfterFives - ones;
+			System.out.println();
 
-				if (changeAdj % 25 == 0) {
-					System.out.println("k");
-					double giveQuarter = changeAdj / 25;
-					giveQuarter = (int) giveQuarter;
-					System.out.println("Quarters: " + giveQuarter);
-				}
+			// quarters
+			double quarters = newChangeAfterOnes / .25;
+			quarters = (int) quarters;
 
-					// give dimes
-					if (changeAdj % 25 != 0) {
-						System.out.println("k");
-						double giveDime = changeAdj / 10;
-						giveDime = (int) giveDime;
-						System.out.println("Dimes: " + giveDime);
+			System.out.println("Quarters: " + quarters);
 
-					}
+			double newChangeAfterQuarters = newChangeAfterOnes - (quarters * .25);
+			System.out.println();
 
-				
+			// dimes
+			double dimes = newChangeAfterQuarters / .10;
+			dimes = (int) dimes;
 
-				/*
-				 * possibilities: 1) does difference have a tens place? a) Y i) how many 20s
-				 * should I give? ii) how many 10s should I give? iii) move on b) N 2) does
-				 * difference have a ones place? a) Y i) how many 5s should I give? ii) how many
-				 * 1s should I give? iii) move one b) N 3) decimal portion... same as above on
-				 * opposite side of decimal... multiple decimal portion by 100 and ask similar
-				 * questions...
-				 * 
-				 * a) Y i) is it divisible by 25? quarters ii) is it divisible by 10? dimes iii)
-				 * is it divisible by 5? 5 nickels fizzBuzz iv) otherwise pennies if digit in
-				 * ones place
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * b) N go to next question 2) doe 3) decimal % (1.0/25.00) == 0... give
-				 * quarters... how many? 3) difference has a tenths place... dimes
-				 */
-			}
+			System.out.println("Dimes: " + dimes);
 
-			/*
-			 * User Story #4 If the amount tendered is more than the cost of the item,
-			 * display the number of bills and coins that should be given to the customer.
-			 */
+			double newChangeAfterDimes = newChangeAfterQuarters - (dimes * .1);
+			System.out.println();
 
-			sc.close();
+			// nickels
+			double nickels = newChangeAfterDimes / .05;
+			nickels = (int) nickels;
+
+			System.out.println("Nickels: " + nickels);
+
+			double newChangeAfterNickels = newChangeAfterDimes - (nickels * .05);
+			System.out.println();
+
+			// pennies
+			double pennies = newChangeAfterNickels / .01;
+			pennies = (int) pennies;
+
+			System.out.println("Pennies: " + pennies);
+
 		}
 
+		sc.close();
 	}
 }
