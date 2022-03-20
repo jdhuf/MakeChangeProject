@@ -11,14 +11,21 @@ public class CashRegister {
 		System.out.println("What is the price of the item?");
 
 		double price = sc.nextDouble();
+
 		System.out.println("Price: $" + price);
+		price = price * 100;
+		int priceInt = (int) price;
 
 		System.out.println("How much money was tendered by the customer?");
 		double amtTendered = sc.nextDouble();
 
 		System.out.println("Amount tendered: $" + amtTendered);
+		amtTendered = amtTendered * 100;
+		int amtTenderedInt = (int) amtTendered;
 
-		double changeTot = amtTendered - price;
+		int changeTotInt = (amtTenderedInt - priceInt);
+		double changeTot = (double) changeTotInt / 100;
+		System.out.println("Total change: $" + changeTot);
 
 		if (amtTendered < price) {
 			System.out.println("Customer provided too little.");
@@ -30,77 +37,66 @@ public class CashRegister {
 
 		// make change
 		if (amtTendered > price) {
-			System.out.println("Total change due: $" + changeTot);
-			System.out.println();
 			System.out.println("Give the customer the following change: ");
-			System.out.println();
 
 			// twenties
-			double twenties = changeTot / 20;
-			twenties = (int) twenties;
+			int twenties = changeTotInt / 2000;
 
 			System.out.println("Twenty-dollar bill(s): " + twenties);
 
-			double newChangeAfterTwenties = changeTot - (twenties * 20);
-			System.out.println();
+			int newChangeAfterTwenties = changeTotInt - (twenties * 2000);
+			System.out.println("New change: " + newChangeAfterTwenties);
 
 			// tens
-			double tens = newChangeAfterTwenties / 10;
-			tens = (int) tens;
+			int tens = newChangeAfterTwenties / 1000;
 
 			System.out.println("Ten-dollar bill(s): " + tens);
 
-			double newChangeAfterTens = newChangeAfterTwenties - (tens * 10);
-			System.out.println();
+			int newChangeAfterTens = newChangeAfterTwenties - (tens * 1000);
+			System.out.println("New change: " + newChangeAfterTens);
 
 			// fives
-			double fives = newChangeAfterTens / 5;
-			fives = (int) fives;
+			int fives = newChangeAfterTens / 500;
 
 			System.out.println("Five-dollar bill(s): " + fives);
 
-			double newChangeAfterFives = newChangeAfterTens - (fives * 5);
-			System.out.println();
+			int newChangeAfterFives = newChangeAfterTens - (fives * 500);
+			System.out.println("New change: " + newChangeAfterFives);
 
 			// ones
-			double ones = newChangeAfterFives;
-			ones = (int) ones;
+			int ones = newChangeAfterFives / 100;
 
 			System.out.println("One-dollar bill(s): " + ones);
 
-			double newChangeAfterOnes = newChangeAfterFives - ones;
-			System.out.println();
+			int newChangeAfterOnes = newChangeAfterFives - (ones * 100);
+			System.out.println("New change: " + newChangeAfterOnes);
 
 			// quarters
-			double quarters = newChangeAfterOnes / .25;
-			quarters = (int) quarters;
+			int quarters = newChangeAfterOnes / 25;
 
 			System.out.println("Quarters: " + quarters);
 
-			double newChangeAfterQuarters = newChangeAfterOnes - (quarters * .25);
-			System.out.println();
+			int newChangeAfterQuarters = newChangeAfterOnes - (quarters * 25);
+			System.out.println("New change: " + newChangeAfterQuarters);
 
 			// dimes
-			double dimes = newChangeAfterQuarters / .10;
-			dimes = (int) dimes;
+			int dimes = newChangeAfterQuarters / 10;
 
 			System.out.println("Dimes: " + dimes);
 
-			double newChangeAfterDimes = newChangeAfterQuarters - (dimes * .1);
-			System.out.println();
+			int newChangeAfterDimes = newChangeAfterQuarters - (dimes * 10);
+			System.out.println("New change: " + newChangeAfterDimes);
 
 			// nickels
-			double nickels = newChangeAfterDimes / .05;
-			nickels = (int) nickels;
+			int nickels = newChangeAfterDimes / 5;
 
 			System.out.println("Nickels: " + nickels);
 
-			double newChangeAfterNickels = newChangeAfterDimes - (nickels * .05);
-			System.out.println();
+			int newChangeAfterNickels = newChangeAfterDimes - (nickels * 5);
+			System.out.println("New change: " + newChangeAfterNickels);
 
 			// pennies
-			double pennies = newChangeAfterNickels / .01;
-			pennies = (int) pennies;
+			int pennies = newChangeAfterNickels / 1;
 
 			System.out.println("Pennies: " + pennies);
 
